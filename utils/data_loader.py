@@ -1,7 +1,10 @@
 import torch
 from torch import nn
 import transformers
+import os
 import torchaudio
+os.environ['HTTP_PROXY'] = 'http://127.0.0.1:10809'
+os.environ['HTTPS_PROXY'] = 'http://127.0.0.1:10809'
 from transformers import AutoTokenizer, Wav2Vec2FeatureExtractor
 from torch.utils.data import DataLoader
 
