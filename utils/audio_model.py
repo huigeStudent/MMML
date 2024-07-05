@@ -1,9 +1,13 @@
 import torch.nn.functional as F
+import os
+# os.environ['HF_ENDPOINT'] = 'https://hf-mirror.com'
 from torch.nn import init
 import torch
 from torch import nn
 from positional_encodings.torch_encodings import PositionalEncodingPermute1D, Summer
 from transformers import Data2VecAudioModel, AutoModel
+os.environ['HTTP_PROXY'] = 'http://127.0.0.1:10809'
+os.environ['HTTPS_PROXY'] = 'http://127.0.0.1:10809'
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
