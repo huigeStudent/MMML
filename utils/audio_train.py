@@ -6,6 +6,7 @@ from utils.audio_model import AudioClassifier, AudioTransformers, data2vec, hube
 from utils.metricsTop import MetricsTop
 import random
 import numpy as np
+import os
 
 # global variable
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
@@ -168,6 +169,8 @@ def run(config):
 #         trainer.test(model, test_loader,"TEST")
         if eval_results['Loss']<lowest_eval_loss:
             lowest_eval_loss = eval_results['Loss']
+            if not os.path.exists(config.model_save_path):
+                os.makedirs(config.model_save_path)
             torch.save(model.state_dict(), config.model_save_path+'loss.pth')
             best_epoch = epoch
         if eval_results[key]>=highest_eval_acc:
